@@ -1,11 +1,13 @@
 <template>
     <div class="container">
+       <appNewQuote @quoteAdded="NewQuote"></appNewQuote>
        <appQuoteGrid :quotes="Quotes"></appQuoteGrid> 
     </div>
 </template>
 
 <script>
-    import QuoteGrid from './components/QuoteGrid';
+    import QuoteGrid from './components/QuoteGrid.vue';
+    import NewQuote from './components/NewQuote.vue';
     export default {
         data: function() {
             return {
@@ -15,8 +17,14 @@
                 maxQuotes: 10
             }
         },
+        methods: {
+           NewQuote: function(Quote) {
+               this.Quotes.push(Quote);
+           } 
+        },
         components: {
-            appQuoteGrid: QuoteGrid
+            appQuoteGrid: QuoteGrid,
+            appNewQuote: NewQuote
         }
         
     }
